@@ -4,32 +4,36 @@ EAPI=7
 
 PYTHON_COMPAT=( python3+ )
 
-inherit autotools multilib multilib-minimal toolchain-funcs python-r1 linux-info systemd usr-ldscript
+inherit autotools multilib-minimal toolchain-funcs python-r1 linux-info systemd usr-ldscript
 
 DESCRIPTION="Userspace utilities for storing and processing auditing records"
 HOMEPAGE="https://people.redhat.com/sgrubb/audit/"
-SRC_URI="https://people.redhat.com/sgrubb/audit/${P}.tar.gz"
+SRC_URI="https://github.com/linux-audit/audit-userspace/tarball/f60b2d8f55c74be798a7f5bcbd6c587987f2578a -> audit-userspace-3.0.7-f60b2d8.tar.gz"
 
 LICENSE="GPL-2+ LGPL-2.1+"
 SLOT="0"
 KEYWORDS="*"
-IUSE="gssapi ldap python static-libs"
+IUSE="gssapi ldap python static-libs test systemd"
 
 REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
-# Testcases are pretty useless as they are built for RedHat users/groups and kernels.
-RESTRICT="test"
+RESTRICT="!test? ( test )"
 
 RDEPEND="gssapi? ( virtual/krb5 )
 	ldap? ( net-nds/openldap )
-	sys-libs/libcap-ng
-	python? ( ${PYTHON_DEPS} )"
+	python? ( ${PYTHON_DEPS} )
+	sys-libs/libcap-ng"
 DEPEND="${RDEPEND}
-	>=sys-kernel/linux-headers-2.6.34" # This is linux specific.
-BDEPEND="python? ( dev-lang/swig:0 )"
+	>=sys-kernel/linux-headers-2.6.34
+	test? ( dev-libs/check )"
+BDEPEND="python? ( dev-lang/swig )"
 
 CONFIG_CHECK="~AUDIT"
 
-PATCHES=( "${FILESDIR}"/${P}-slibtool.patch )
+post_src_unpack() {
+	if [ ! -d "${S}" ]; then
+		mv linux-audit-audit-userspace* "${S}" || die
+	fi
+}
 
 src_prepare() {
 	# audisp-remote moved in multilib_src_install_all
@@ -38,7 +42,7 @@ src_prepare() {
 		audisp/plugins/remote/au-remote.conf || die
 
 	# Disable installing sample rules so they can be installed as docs.
-	echo -e '%:\n\t:' | tee rules/Makefile.{am,in} >/dev/null
+	echo -e '%:\n\t:' | tee rules/Makefile.{am,in} >/dev/null || die
 
 	default
 	eautoreconf
@@ -55,23 +59,29 @@ multilib_src_configure() {
 		--without-python
 		--without-python3
 	)
-	ECONF_SOURCE=${S} econf "${myeconfargs[@]}"
+
+	ECONF_SOURCE="${S}" econf "${myeconfargs[@]}"
 
 	if multilib_is_native_abi && use python; then
 		python_configure() {
-			mkdir -p "${BUILD_DIR}"
+			mkdir -p "${BUILD_DIR}" || die
 			pushd "${BUILD_DIR}" &>/dev/null || die
+
 			ECONF_SOURCE=${S} econf "${myeconfargs[@]}" --with-python3
+
 			popd &>/dev/null || die
 		}
+
 		python_foreach_impl python_configure
 	fi
 }
 
 src_configure() {
 	tc-export_build_env BUILD_{CC,CPP}
+
 	local -x CC_FOR_BUILD="${BUILD_CC}"
 	local -x CPP_FOR_BUILD="${BUILD_CPP}"
+
 	multilib-minimal_src_configure
 }
 
@@ -102,9 +112,10 @@ multilib_src_install() {
 			emake -C "${BUILD_DIR}"/bindings/python/python3 DESTDIR="${D}" top_builddir="${native_build}" install
 			python_optimize
 		}
+
 		use python && python_foreach_impl python_install
 
-		# things like shadow use this so we need to be in /
+		# Things like shadow use this so we need to be in /
 		gen_usr_ldscript -a audit auparse
 	else
 		emake -C lib DESTDIR="${D}" install
@@ -140,6 +151,9 @@ multilib_src_install_all() {
 
 	# Security
 	lockdown_perms "${ED}"
+
+	# SystemD
+	use systemd || rm -rf ${ED}/lib/systemd
 }
 
 pkg_postinst() {
@@ -149,7 +163,7 @@ pkg_postinst() {
 lockdown_perms() {
 	# Upstream wants these to have restrictive perms.
 	# Should not || die as not all paths may exist.
-	local basedir="$1"
+	local basedir="${1}"
 	chmod 0750 "${basedir}"/sbin/au{ditctl,ditd,report,search,trace} 2>/dev/null
 	chmod 0750 "${basedir}"/var/log/audit 2>/dev/null
 	chmod 0640 "${basedir}"/etc/audit/{auditd.conf,audit*.rules*} 2>/dev/null
