@@ -1,12 +1,12 @@
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=6
 
 DISTUTILS_OPTIONAL=1
 PYTHON_COMPAT=( python2+ python3+ )
 GENTOO_DEPEND_ON_PERL="no"
 
-inherit autotools distutils-r1 perl-functions
+inherit autotools distutils-r1 eapi7-ver perl-functions
 
 MY_PV="$(ver_cut 1-2)"
 
