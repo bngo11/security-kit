@@ -1,0 +1,12 @@
+BDEPEND=>=dev-lang/go-1.12 app-arch/unzip
+DEFINED_PHASES=compile install postinst prepare unpack
+DESCRIPTION=Simple and flexible tool for managing secrets
+EAPI=7
+HOMEPAGE=https://github.com/getsops/sops
+KEYWORDS=*
+LICENSE=MPL-2.0
+RESTRICT=strip
+SLOT=0
+SRC_URI=https://github.com/getsops/sops/tarball/61f4b939b069cc45daa517bd4a968a335ff7ec30 -> sops-3.8.0-61f4b93.tar.gz https://direct.funtoo.org/26/6d/ab/266dabe3855f13b8ae9db241573292dafc735f621a97b147e2fe6ad2fe07df741fb4a53c57cb292a185e3a87a325f4ba54116308191ea5cc9c12a1a770f192ff -> sops-3.8.0-funtoo-go-bundle-5203dd154baabbad2eb8469bb753b688c19fc054b9e840228e9bec4d443b1546a54e94ac99a0f98701941e9e97666e6334075a9fe48957a55d58b8a6ec5ab147.tar.gz
+_eclasses_=go-module	cb10a443c46556a15ed035d7a99128e8	xdg-utils	14d00d009167652b1fa363e55effe213
+_md5_=0b02d62807fbfa744dc1e3f2b6deb699
