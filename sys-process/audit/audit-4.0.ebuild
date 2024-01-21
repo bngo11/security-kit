@@ -8,7 +8,7 @@ inherit autotools multilib-minimal toolchain-funcs python-r1 linux-info systemd 
 
 DESCRIPTION="Userspace utilities for storing and processing auditing records"
 HOMEPAGE="https://people.redhat.com/sgrubb/audit/"
-SRC_URI="https://github.com/linux-audit/audit-userspace/tarball/572eb7d4fe926e7c1c52166d08e78af54877cbc5 -> audit-userspace-3.1.2-572eb7d.tar.gz"
+SRC_URI="https://github.com/linux-audit/audit-userspace/tarball/ae7d2830391c1115cebff6340ef3130b1b03ce45 -> audit-userspace-4.0-ae7d283.tar.gz"
 
 LICENSE="GPL-2+ LGPL-2.1+"
 SLOT="0"
@@ -43,6 +43,11 @@ src_prepare() {
 
 	# Disable installing sample rules so they can be installed as docs.
 	echo -e '%:\n\t:' | tee rules/Makefile.{am,in} >/dev/null || die
+
+	# Fix audit-4.0
+	sed -i \
+		-e "/^#include <sys\/types.h>/a #ifndef __attr_dealloc\n# define __attr_dealloc(dealloc, argno)\n# define __attr_dealloc_free\n#endif\n#ifndef __attribute_malloc__\n#  define __attribute_malloc__\n#endif" \
+		audisp/plugins/remote/queue.h || die
 
 	default
 	eautoreconf
