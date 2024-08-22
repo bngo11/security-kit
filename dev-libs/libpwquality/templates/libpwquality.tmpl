@@ -7,7 +7,7 @@ inherit pam python-r1 usr-ldscript ltprune
 
 DESCRIPTION="Library for password quality checking and generating random passwords"
 HOMEPAGE="https://github.com/libpwquality/libpwquality"
-SRC_URI="https://github.com/${PN}/${PN}/releases/download/${P}/${P}.tar.bz2"
+SRC_URI="{{ src_uri }}"
 
 LICENSE="|| ( BSD GPL-2 )"
 SLOT="0"
@@ -34,7 +34,7 @@ src_prepare() {
 
 	if use python ; then
 		# bug #830397
-		export SETUPTOOLS_USE_DISTUTILS=stdlib
+		export DISTUTILS_USE_PEP517=setuptools
 		python_copy_sources
 	fi
 }
