@@ -2,6 +2,7 @@
 
 EAPI=7
 PYTHON_COMPAT=( python3+ )
+DISTUTILS_USE_PEP517=setuptools
 
 inherit pam python-r1 usr-ldscript ltprune
 
