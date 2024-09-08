@@ -1,12 +1,13 @@
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 DISTUTILS_OPTIONAL=1
-PYTHON_COMPAT=( python2+ python3+ )
+DISTUTILS_USE_PEP517=setuptools
+PYTHON_COMPAT=( python3+ )
 GENTOO_DEPEND_ON_PERL="no"
 
-inherit autotools distutils-r1 eapi7-ver perl-functions
+inherit autotools distutils-r1 perl-functions
 
 MY_PV="$(ver_cut 1-2)"
 
@@ -14,7 +15,7 @@ DESCRIPTION="Library to support AppArmor userspace utilities"
 HOMEPAGE="https://gitlab.com/apparmor/apparmor/wikis/home"
 SRC_URI="https://launchpad.net/apparmor/${MY_PV}/${PV}/+download/apparmor-${PV}.tar.gz"
 
-LICENSE="LGPL-2.1"
+LICENSE="GPL-2 LGPL-2.1"
 SLOT="0"
 KEYWORDS="*"
 IUSE="doc +perl +python static-libs"
@@ -33,8 +34,7 @@ DEPEND="${RDEPEND}
 
 S=${WORKDIR}/apparmor-${PV}/libraries/${PN}
 
-PATCHES=( "${FILESDIR}/${PN}-2.10-symbol_visibility.patch" )
-
+# depends on the package already being installed
 RESTRICT="test"
 
 src_prepare() {
