@@ -9,6 +9,6 @@ KEYWORDS=*
 LICENSE=GPL-2
 RDEPEND=sys-apps/dmidecode sys-block/parted sys-libs/ncurses:= smartmontools? ( sys-apps/smartmontools )
 SLOT=0
-SRC_URI=https://github.com/martijnvanbrummelen/nwipe/tarball/2aa060531df1181efa93030a23b6edff4a8acd35 -> nwipe-0.39-2aa0605.tar.gz
+SRC_URI=https://github.com/martijnvanbrummelen/nwipe/tarball/3bf91223b93f3be30ae3cbf7029470bbd903cd2c -> nwipe-0.40-3bf9122.tar.gz
 _eclasses_=autotools	619846d0d85ed5d3334692c0215a603e	libtool	f143db5a74ccd9ca28c1234deffede96	multilib	d410501a125f99ffb560b0c523cd3d1e	toolchain-funcs	24921b57d6561d87cbef4916a296ada4
-_md5_=fa6f05babf760be916a5122ce3419927
+_md5_=4a5c918044a946407bcd6ac6d5a40af5
