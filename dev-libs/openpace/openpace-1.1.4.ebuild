@@ -6,7 +6,7 @@ inherit autotools
 
 DESCRIPTION="Cryptographic library for EAC version 2"
 HOMEPAGE="https://frankmorgner.github.io/openpace"
-SRC_URI="https://github.com/frankmorgner/openpace/releases/download/1.1.3/openpace-1.1.3.tar.gz -> openpace-1.1.3.tar.gz"
+SRC_URI="https://github.com/frankmorgner/openpace/releases/download/1.1.4/openpace-1.1.4.tar.gz -> openpace-1.1.4.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0/3"
