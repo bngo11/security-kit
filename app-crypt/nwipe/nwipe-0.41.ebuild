@@ -6,7 +6,7 @@ inherit autotools
 
 DESCRIPTION="nwipe secure disk eraser"
 HOMEPAGE="https://github.com/martijnvanbrummelen/nwipe"
-SRC_URI="https://github.com/martijnvanbrummelen/nwipe/tarball/3bf91223b93f3be30ae3cbf7029470bbd903cd2c -> nwipe-0.40-3bf9122.tar.gz"
+SRC_URI="https://github.com/martijnvanbrummelen/nwipe/tarball/7fe250480a2f49ab6686dbd3665c8039eca7e998 -> nwipe-0.41-7fe2504.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
