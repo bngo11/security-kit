@@ -8,7 +8,7 @@ inherit autotools toolchain-funcs python-r1 linux-info systemd usr-ldscript
 
 DESCRIPTION="Userspace utilities for storing and processing auditing records"
 HOMEPAGE="https://people.redhat.com/sgrubb/audit/"
-SRC_URI="https://github.com/linux-audit/audit-userspace/tarball/07eea50408d28c953d4048dfef3da6556ce4b569 -> audit-userspace-4.1.4-07eea50.tar.gz"
+SRC_URI="https://github.com/linux-audit/audit-userspace/tarball/29eec1e2904f55e88f9eeef483ebc1c9062c394a -> audit-userspace-4.2-29eec1e.tar.gz"
 
 LICENSE="GPL-2+ LGPL-2.1+"
 SLOT="0"
