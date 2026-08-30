@@ -6,7 +6,7 @@ inherit bash-completion-r1 linux-info meson
 
 DESCRIPTION="Unprivileged sandboxing tool, namespaces-powered chroot-like solution"
 HOMEPAGE="https://github.com/containers/bubblewrap/"
-SRC_URI=" https://github.com/containers/bubblewrap/releases/download/v0.11.2/bubblewrap-0.11.2.tar.xz -> bubblewrap-0.11.2.tar.xz "
+SRC_URI=" https://github.com/containers/bubblewrap/releases/download/v0.12.0/bubblewrap-0.12.0.tar.xz -> bubblewrap-0.12.0.tar.xz "
 
 LICENSE="LGPL-2+"
 SLOT="0"
