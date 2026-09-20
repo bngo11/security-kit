@@ -6,7 +6,7 @@ inherit toolchain-funcs
 
 DESCRIPTION="Tools for manipulating signed PE-COFF binaries"
 HOMEPAGE="https://github.com/rhboot/pesign"
-SRC_URI="https://github.com/rhboot/pesign/tarball/ee53c414a2a1a875920ad92cd8634e4927d69e58 -> pesign-116-ee53c41.tar.gz"
+SRC_URI="https://github.com/rhboot/pesign/tarball/612e96c151afa379a4d7a28a9258f5ae435c0953 -> pesign-117-612e96c.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
