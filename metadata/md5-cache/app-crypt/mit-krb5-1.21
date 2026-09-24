@@ -1,4 +1,4 @@
-BDEPEND=|| ( dev-lang/python:3.8 dev-lang/python:3.9 dev-lang/python:3.7 dev-lang/python:3.10 dev-lang/python:3.12 dev-lang/python:3.14 ) virtual/yacc cpu_flags_x86_aes? ( amd64? ( dev-lang/yasm ) x86? ( dev-lang/yasm ) ) doc? ( virtual/latex-base ) test? ( dev-util/cmocka ) >=app-portage/elt-patches-20170815 || ( >=sys-devel/automake-1.17:1.17 ) >=sys-devel/autoconf-2.71 >=sys-devel/libtool-2.4
+BDEPEND=|| ( dev-lang/python:3.9 dev-lang/python:3.10 ) virtual/yacc cpu_flags_x86_aes? ( amd64? ( dev-lang/yasm ) x86? ( dev-lang/yasm ) ) doc? ( virtual/latex-base ) test? ( dev-util/cmocka ) >=app-portage/elt-patches-20170815 || ( >=sys-devel/automake-1.17:1.17 ) >=sys-devel/autoconf-2.71 >=sys-devel/libtool-2.4
 DEFINED_PHASES=compile configure install prepare setup test
 DEPEND=!!app-crypt/heimdal >=sys-fs/e2fsprogs-1.46.4-r51 || ( >=dev-libs/libverto-0.2.5[libev] >=dev-libs/libverto-0.2.5[libevent] ) keyutils? ( >=sys-apps/keyutils-1.5.8:= ) lmdb? ( dev-db/lmdb:= ) nls? ( sys-devel/gettext ) openldap? ( >=net-nds/openldap-2.4.38-r1:= ) pkinit? ( >=dev-libs/openssl-1.0.1h-r2:0= ) xinetd? ( sys-apps/xinetd )
 DESCRIPTION=MIT Kerberos V
@@ -10,6 +10,6 @@ LICENSE=openafs-krb5-a BSD MIT OPENLDAP BSD-2 HPND BSD-4 ISC RSA CC-BY-SA-3.0 ||
 RDEPEND=!!app-crypt/heimdal >=sys-fs/e2fsprogs-1.46.4-r51 || ( >=dev-libs/libverto-0.2.5[libev] >=dev-libs/libverto-0.2.5[libevent] ) keyutils? ( >=sys-apps/keyutils-1.5.8:= ) lmdb? ( dev-db/lmdb:= ) nls? ( sys-devel/gettext ) openldap? ( >=net-nds/openldap-2.4.38-r1:= ) pkinit? ( >=dev-libs/openssl-1.0.1h-r2:0= ) xinetd? ( sys-apps/xinetd ) selinux? ( sec-policy/selinux-kerberos )
 RESTRICT=!test? ( test )
 SLOT=0
-SRC_URI=https://web.mit.edu/kerberos/dist/krb5/1.22/krb5-1.22.1.tar.gz
+SRC_URI=https://web.mit.edu/kerberos/dist/krb5/1.21/krb5-1.21.tar.gz
 _eclasses_=autotools	619846d0d85ed5d3334692c0215a603e	eapi8-dosym	cd7d420bb5be5ee079f27239ce76b8f5	libtool	f143db5a74ccd9ca28c1234deffede96	multilib	d410501a125f99ffb560b0c523cd3d1e	multiprocessing	cac3169468f893670dac3e7cb940e045	python-any-r1	54a3178500786b0a7ede4a23b7f2a6ad	python-utils-r1	89d946015dea2829c7554116a61cae96	toolchain-funcs	24921b57d6561d87cbef4916a296ada4
-_md5_=583fa6fafc9e38c724ed8e6e97e41ba8
+_md5_=4488ffea5bd989fd4a39a910d362ce8b
